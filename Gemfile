@@ -36,3 +36,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem 'pg'
+gem 'rails_12factor'
+gem 'devise'
+gem 'bootstrap-sass'
+gem 'sprockets'
+gem 'mysql2', '0.3.11'
+gem 'omniauth'
