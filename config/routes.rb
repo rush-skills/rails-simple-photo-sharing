@@ -1,8 +1,10 @@
 Bpt2::Application.routes.draw do
   resources :photos
+  devise_scope :user do
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
-
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root :to => 'photos#index'
   
   # The priority is based upon order of creation:

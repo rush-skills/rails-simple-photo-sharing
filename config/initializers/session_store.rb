@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Bpt2::Application.config.session_store :cookie_store, key: '_bpt2_session'
+Bpt2::Application.config.session_store :active_record_store
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
