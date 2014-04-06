@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :photos
   validates :username,
   :uniqueness => {
     :case_sensitive => false
@@ -10,7 +11,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login],  :omniauth_providers => [:facebook, :google_oauth2]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :uid, :provider
   # attr_accessible :title, :body
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
