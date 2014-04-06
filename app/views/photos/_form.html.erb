@@ -12,8 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+   <p> <%= f.label :name %><br />
+    <%= f.text_field :name %></p>
+      <p>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :remote_image_url, "or image URL" %><br />
+    <%= f.text_field :remote_image_url %>
   </div>
   <div class="actions">
     <%= f.submit %>

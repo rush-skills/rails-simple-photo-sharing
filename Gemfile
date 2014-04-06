@@ -45,3 +45,4 @@ gem 'mysql2', '0.3.11'
 gem 'omniauth-facebook'
 gem 'certified'
 gem "omniauth-google-oauth2"
+gem "carrierwave"

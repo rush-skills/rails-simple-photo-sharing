@@ -3,6 +3,7 @@
 <p>
   <b>Name:</b>
   <%= @photo.name %>
+  <%= image_tag @photo.image_url if @photo.image? %>
 </p>
 
 
