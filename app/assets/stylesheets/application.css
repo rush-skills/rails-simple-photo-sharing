@@ -8,6 +8,76 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap
+ *= require bootstrap-theme
  *= require_self
  *= require_tree .
  */
+@font-face {
+font-family: 'Glyphicons Halflings';
+src: url('../assets/glyphicons-halflings-regular.eot');
+src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 2em;
+  color: #52be7f;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 13px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#logo:hover {
+  color: #100818;
+  text-decoration: none;
+}
+.cuscol {
+	color: #000000 !important;
+}
+.marketing {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.featurette-divider {
+  margin: 80px 0;
+  border-top: 1px solid #000000; /* Space out the Bootstrap <hr> more */
+}
+body{
+	background-image: url(skulls.png);
+}.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+.btn{
+	margin: 5px;
+}

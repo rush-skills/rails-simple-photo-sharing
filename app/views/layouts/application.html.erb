@@ -4,20 +4,66 @@
   <title>Bpt2</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">The Backpack Task</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li class="active"><a href="#">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <% if user_signed_in? %><%= current_user.username %><% else %>Not Logged In<% end %><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign up", new_user_registration_path %></li><li><%= link_to "Sign in", new_user_session_path %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-<div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.username %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-</div>
-<br/>
-<%= yield %>
+
+
+  <div class="container marketing">
+    <% if flash[:color]== "valid" %>
+      <div class="alert alert-success">
+        <p><%= flash[:notice]%></p>
+      </div>
+    <% elsif flash[:color]== "invalid"%>
+      <div class="alert alert-danger">
+        <p><%=flash[:notice]%></p>
+      </div>
+    <%else%>
+      <div class="notice">
+        <p><%=flash[:notice]%></p>
+      </div>
+    <%end%>
+    <%= yield %>
+
+    <hr class="featurette-divider">
+    <footer>
+      <div class="center">
+        <p>Fuck You I rock</p></div>
+    </footer>
+
+  </div>
 
 </body>
 </html>

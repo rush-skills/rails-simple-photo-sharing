@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   validates :username,
   :uniqueness => {
     :case_sensitive => false
-  }
+  } 
+  
   attr_accessor :login
   attr_accessible :login
   # Include default devise modules. Others available are:
