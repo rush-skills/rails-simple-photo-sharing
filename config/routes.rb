@@ -1,4 +1,12 @@
 Bpt2::Application.routes.draw do
+  get "likes/create"
+
+  get "likes/destroy"
+
+  get "comments/create"
+
+  get "comments/destroy"
+
   resources :photos
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

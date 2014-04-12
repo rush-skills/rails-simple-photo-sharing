@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :photos
+  has_many :likes, :through => :photos
+  has_many :comments, :through => :photos
   validates :username,
   :uniqueness => {
     :case_sensitive => false

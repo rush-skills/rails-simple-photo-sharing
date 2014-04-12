@@ -7,7 +7,25 @@
   
   <%= image_tag @photo.image_url, {:border => 0, :style => "max-width:100%;",:display => "block"} if @photo.image? %>
 </p>
-
+<%= form_tag({:controller=>"likes", :action=>"create"}, method: :get) do %>
+  <%= hidden_field_tag :id, @photo.id %>
+  <%= submit_tag 'Like', class: "btn btn-primary"%>
+<% end %>
+<p> <%= @photo.likes.count %> likes </p>
+<% @photo.likes.each do |l| %>
+<%= l.user_id%>
+<%= l.photo_id%>
+<%end%>
+<%= form_tag({:controller=>"comments", :action=>"create"}, method: :get) do %>
+  <%= text_field_tag :comment,nil,{:class => "form-control",:placeholder => "Add a comment"} %>
+  <%= hidden_field_tag :id, @photo.id %>
+  <%= submit_tag 'Comment', class: "btn btn-primary"%>
+<% end %>
+<% @photo.comments.each do |c| %>
+<%= c.user_id%>
+<%= c.photo_id%>
+<%= c.content%>
+<%end%>
 <% if @photo.user == current_user %>
 <%= link_to 'Edit', edit_photo_path(@photo) ,class: "btn btn-warning"%> |
 <%= link_to 'Destroy', @photo, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%> |
