@@ -46,3 +46,5 @@ gem 'omniauth-facebook'
 gem 'certified'
 gem "omniauth-google-oauth2"
 gem "carrierwave"
+#gem "oa-openid"
+gem 'omniauth-openid'

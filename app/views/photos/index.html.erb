@@ -1,23 +1,28 @@
-<h1>Listing photos</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="page-header" style="border-bottom: 1px solid #3c763d;">
+  <h1> Upload your own <%= link_to 'New Photo', new_photo_path, :class => "btn btn-info" %></h1>
+  <hr style="border-top:1px dotted #3c763d"/>
+  <h1>All Photos</h1>
+</div>
 
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%= photo.name %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Photo', new_photo_path %>
+<div class="row">
+  <% @photos.each do |photo| %>
+  <div class="col-sm-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Title: <%= photo.name %></h3>
+        
+      </div>
+      <div class="panel-body center text1" style="height: 225px">
+        <%= link_to image_tag(photo.image_url, {:class => 'center center1', :border => 0, :style => "max-width:100%;max-height:200px"}),photo if photo.image? %></br>
+        <!--<%= link_to 'Show', photo %>
+        <%= link_to 'Edit', edit_photo_path(photo) %>
+        <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+      </div>
+      <div class="panel-heading">
+        <h3 class="panel-title" style="margin-top:3px">Uploader: <%= link_to photo.user.username, :controller => "users", :action => "profile", id: photo.user.id %></h3>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

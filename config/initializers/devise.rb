@@ -22,8 +22,10 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
   require "omniauth-facebook"
   require "omniauth-google-oauth2"
+  require "openid/store/filesystem"
   config.omniauth :facebook, '1478278932385342', '5e2d356257e55a5736e3251ba81c97e2', :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
-  
+  config.omniauth :openid, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'openid'
+  config.omniauth :openid, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   config.omniauth :google_oauth2, '332604468143-st5gt7cg85s31fse135ld5c68marflnu.apps.googleusercontent.com', 'runmpSgwX4V6uSCqZoUl7dYE', access_type: "offline", :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

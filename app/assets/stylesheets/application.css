@@ -74,10 +74,16 @@ textarea {
   border-top: 1px solid #000000; /* Space out the Bootstrap <hr> more */
 }
 body{
-	background-image: url(skulls.png);
+	background-image: url(text5.png);
 }.theme-showcase > p > .btn {
   margin: 5px 0;
 }
 .btn{
 	margin: 5px;
+}
+.text1{
+    background-image: linear-gradient(to right, #c5d9b4 0%, #eee 100%) !important;
+}
+h1,h2,h3,h4,h5,h6,p{
+  color: #3c763d;
 }

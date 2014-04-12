@@ -10,7 +10,15 @@ class PhotosController < ApplicationController
       format.json { render json: @photos }
     end
   end
+  def index_user
 
+    @photosu = current_user.photos
+
+    respond_to do |format|
+      format.html # index_user.html.erb
+      format.json { render json: @photosu }
+    end
+  end
   # GET /photos/1
   # GET /photos/1.json
   def show
@@ -58,15 +66,20 @@ class PhotosController < ApplicationController
   # PUT /photos/1.json
   def update
     @photo = Photo.find(params[:id])
-
-    respond_to do |format|
-      if @photo.update_attributes(params[:photo])
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+    puts "current_user", current_user.id
+    puts "@photo.user", @photo.user.id
+    if @photo.user.id == current_user.id
+      respond_to do |format|
+        if @photo.update_attributes(params[:photo])
+          format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @photo.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @photo, notice: "You can't edit other user's picture"
     end
   end
 
@@ -74,11 +87,15 @@ class PhotosController < ApplicationController
   # DELETE /photos/1.json
   def destroy
     @photo = Photo.find(params[:id])
-    @photo.destroy
+    if @photo.user == current_user
+      @photo.destroy
 
-    respond_to do |format|
-      format.html { redirect_to photos_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to photos_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @photo, notice: "You can't delete other user's picture"
     end
   end
 end

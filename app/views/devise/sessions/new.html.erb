@@ -17,6 +17,8 @@
   <h3>There are other ways too</h1>
   <%= link_to image_tag("google.png", {:border => 0, :width => '100%'}),
      user_omniauth_authorize_path(:google_oauth2) %></br><p>or</p>
-  <%= link_to image_tag("fb.png", {:border => 0, :width => '96%'}), user_omniauth_authorize_path(:facebook)  %></br>
+  <%= link_to image_tag("fb.png", {:border => 0, :width => '96%'}), user_omniauth_authorize_path(:facebook)  %></br></br>
+  <%= link_to "Sign in with Google using OpenID", user_omniauth_authorize_path(:openid, :openid_url => "https://www.google.com/accounts/o8/id") %></br>
+
 </div>
 </div>

@@ -1,0 +1,25 @@
+<div class="page-header" style="border-bottom: 1px solid #3c763d;">
+  
+  <div class="center"><h1>My Photos</h1><%= link_to 'New Photo', new_photo_path, class: "btn btn-info" %></div>
+</div>
+
+<div class="row">
+  <% @photosu.each do |photo| %>
+  <div class="col-sm-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Title: <%= photo.name %></h3>
+        
+      </div>
+      <div class="panel-body center text1" style="height: 225px">
+        <%= link_to image_tag(photo.image_url, {:class => 'center center1', :border => 0, :style => "max-width:100%;max-height:200px"}),photo if photo.image? %></br>
+        <!--<%= link_to 'Show', photo %>-->
+      </div>
+      <div class="panel-heading center">
+        <%= link_to 'Edit Photo', edit_photo_path(photo), class: 'btn btn-warning' %>
+        <%= link_to 'Delete Photo', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%> 
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

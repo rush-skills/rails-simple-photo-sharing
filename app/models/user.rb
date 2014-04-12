@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login],  :omniauth_providers => [:facebook, :google_oauth2]
+  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login],  :omniauth_providers => [:facebook, :google_oauth2, :openid]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :uid, :provider
@@ -44,12 +44,23 @@ class User < ActiveRecord::Base
     end
     user
   end
+def self.find_for_openid(access_token, signed_in_resource=nil)
+  data = access_token['info']
+  if user = User.find_by_email(data["email"])
+    user
+  else # Create a user with a stub password.
+    User.create!(username: data["name"],provider: data['provider'], uid: data['uid'],:email => data["email"], :password => Devise.friendly_token[0,20])
+  end
+end
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
       if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+      if data = session["devise.openid_data"] && session["devise.openid_data"]['info']['email']
         user.email = data["email"] if user.email.blank?
       end
     end
