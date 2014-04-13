@@ -16,6 +16,7 @@
         <!--<%= link_to 'Show', photo %>-->
       </div>
       <div class="panel-heading center">
+        <h3 class="panel-title"><%= photo.likes.count %> likes | <%= photo.comments.count %> comments <h3/>
         <%= link_to 'Edit Photo', edit_photo_path(photo), class: 'btn btn-warning' %>
         <%= link_to 'Delete Photo', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%> 
       </div>

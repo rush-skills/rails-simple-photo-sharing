@@ -20,7 +20,7 @@
         <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %> -->
       </div>
       <div class="panel-heading">
-        <h3 class="panel-title" style="margin-top:3px">Uploader: <%= link_to photo.user.username, :controller => "users", :action => "profile", id: photo.user.id %></h3>
+        <h3 class="panel-title" style="margin-top:3px">Uploader: <%= link_to photo.user.username, :controller => "users", :action => "profile", id: photo.user.id %> | <%= photo.likes.count %> likes | <%= photo.comments.count %> comments </h3>
       </div>
     </div>
   </div>

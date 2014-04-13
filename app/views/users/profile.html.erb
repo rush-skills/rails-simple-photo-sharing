@@ -10,6 +10,68 @@
   <%= @ofuser.email %>
 </p>
 
-
-
+<p>
+	<b>Recent Likes</b>
+	<div class="row">
+		<% @ofuser.likes.last(5).reverse.each do |f| %>
+		<div class="col-sm-4">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+		        	<h3 class="panel-title">Title: <%= Photo.find(f.photo_id).name %></h3>
+		        
+		     	</div>
+				<div class="panel-body center text1" style="height: 225px">
+		        <%= link_to image_tag(Photo.find(f.photo_id).image_url, {:class => 'center center1', :border => 0, :style => "max-width:100%;max-height:200px"}),Photo.find(f.photo_id) if Photo.find(f.photo_id).image? %></br>
+		        </div>
+		        <div class="panel-heading center">
+		        <p class="panel-title"><h3 class="panel-title" style="margin-top:3px">Uploader: <%= link_to Photo.find(f.photo_id).user.username, :controller => "users", :action => "profile", id: Photo.find(f.photo_id).user.id %> | <%= Photo.find(f.photo_id).likes.count %> likes | <%= Photo.find(f.photo_id).comments.count %> comments <p/>
+		        </div>
+	        </div>
+	    </div>
+	    <% end %>
+    </div>
+</p>
+<p>
+	<b>Recent Comments</b>
+	<div class="row">
+		<% @ofuser.comments.last(5).reverse.each do |f| %>
+		<div class="col-sm-4">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+		        	<h3 class="panel-title">Title: <%= Photo.find(f.photo_id).name %></h3>
+		        
+		     	</div>
+				<div class="panel-body center text1" style="height: 225px">
+		        <%= link_to image_tag(Photo.find(f.photo_id).image_url, {:class => 'center center1', :border => 0, :style => "max-width:100%;max-height:200px"}),Photo.find(f.photo_id) if Photo.find(f.photo_id).image? %></br>
+		        </div>
+		        <div class="panel-heading center">
+		        <p class="panel-title"><h3 class="panel-title" style="margin-top:3px">Uploader: <%= link_to Photo.find(f.photo_id).user.username, :controller => "users", :action => "profile", id: Photo.find(f.photo_id).user.id %> | <%= Photo.find(f.photo_id).likes.count %> likes | <%= Photo.find(f.photo_id).comments.count %> comments <p/>
+	        	<p class-"panel-heading center">Comment: <%= f.content %>
+		        </div>
+	        </div>
+	    </div>
+	    <% end %>
+    </div>
+</p>
+<p>
+	<b>Recent Uploads</b>
+	<div class="row">
+		<% @ofuser.photos.last(5).reverse.each do |f| %>
+		<div class="col-sm-4">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+		        	<h3 class="panel-title">Title: <%= f.name %></h3>
+		        
+		     	</div>
+				<div class="panel-body center text1" style="height: 225px">
+		        <%= link_to image_tag(f.image_url, {:class => 'center center1', :border => 0, :style => "max-width:100%;max-height:200px"}),f if f.image? %></br>
+		        </div>
+		        <div class="panel-heading center">
+		        <p class="panel-title"><h3 class="panel-title" style="margin-top:3px"><%= f.likes.count %> likes | <%= f.comments.count %> comments <p/>
+		        </div>
+	        </div>
+	    </div>
+	    <% end %>
+    </div>
+</p>
 <%= link_to 'Back', :controller => "photos", :action => "index" %>

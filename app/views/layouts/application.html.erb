@@ -29,6 +29,7 @@
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
                   <li><%= link_to "My Photos", :controller => 'photos', :action => 'index_user' %></li>
+                  <li><%= link_to "My Profile", :controller => 'users', :action => 'profile'%> </li>
                   <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
                 <% else %>
                   <li><%= link_to "Sign up", new_user_registration_path %></li><li><%= link_to "Sign in", new_user_session_path %></li>
@@ -54,7 +55,7 @@
     <hr class="featurette-divider">
     <footer>
       <div class="center">
-        <p>Fuck You I rock</p></div>
+        <p>Creator: Ankur Singh</p></div>
     </footer>
 
   </div>
