@@ -1,6 +1,3 @@
-The Backpack task
-Made by Ankur Singh for intern @ Backpack
-
 Description:
 A basic photo sharing app with User control and OAuth2 login.
 Uses Devise for user login, Omniauth of OAuth and OpenID intregration, Bootstrap for responsive frontend and CarrierWave for photo uploads.
